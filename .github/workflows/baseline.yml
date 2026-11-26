@@ -3,6 +3,8 @@ name: Baseline builds
 on:
   push:
     branches: [codex/import-pineconemc]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
