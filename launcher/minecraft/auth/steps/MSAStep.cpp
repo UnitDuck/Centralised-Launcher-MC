@@ -114,9 +114,10 @@ class LoggingOAuthHttpServerReplyHandler final : public QOAuthHttpServerReplyHan
 MSAStep::MSAStep(AccountData* data, bool silent, QString clientId, QString scopes, QUrl authorizeUrl, QUrl tokenUrl) : AuthStep(data), m_silent(silent)
 {
     m_clientId = !clientId.isEmpty() ? clientId : APPLICATION->getMSAClientID();
-    if (QCoreApplication::applicationFilePath().startsWith("/tmp/.mount_") || APPLICATION->isPortable() || !isSchemeHandlerRegistered() || clientId.isEmpty())
-
-    {
+    // The bundled provider clients use the loopback flow so sign-in does not depend on the fork's URL scheme.
+    const bool useBundledClient = clientId.isEmpty() || clientId == BuildConfig.ELY_CLIENT_ID;
+    if (useBundledClient || QCoreApplication::applicationFilePath().startsWith("/tmp/.mount_") || APPLICATION->isPortable() ||
+        !isSchemeHandlerRegistered()) {
         auto replyHandler = new LoggingOAuthHttpServerReplyHandler(this);
         replyHandler->setCallbackText(QString(R"XXX(
     <noscript>

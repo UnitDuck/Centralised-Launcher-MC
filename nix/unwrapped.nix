@@ -112,7 +112,7 @@ stdenv.mkDerivation {
       Scrumplex
       getchoo
     ];
-    mainProgram = "prismlauncher";
+    mainProgram = "centralisedlauncher";
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
   };
 }

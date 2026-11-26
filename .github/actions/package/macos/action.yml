@@ -62,7 +62,7 @@ runs:
         cmake --install ${{ env.BUILD_DIR }} --config ${{ inputs.build-type }}
 
         cd ${{ env.INSTALL_DIR }}
-        chmod +x "ElyPrismLauncher.app/Contents/MacOS/elyprismlauncher"
+        chmod +x "CentralisedLauncher.app/Contents/MacOS/CentralisedLauncher"
 
         if [ -n '${{ inputs.apple-codesign-id }}' ]; then
           APPLE_CODESIGN_ID='${{ inputs.apple-codesign-id }}'
@@ -72,7 +72,7 @@ runs:
           ENTITLEMENTS_FILE='../program_info/AdhocSignedApp.entitlements'
         fi
 
-        sudo codesign --sign "$APPLE_CODESIGN_ID" --deep --force --entitlements "$ENTITLEMENTS_FILE" --options runtime "ElyPrismLauncher.app/Contents/MacOS/elyprismlauncher"
+        sudo codesign --sign "$APPLE_CODESIGN_ID" --deep --force --entitlements "$ENTITLEMENTS_FILE" --options runtime "CentralisedLauncher.app/Contents/MacOS/CentralisedLauncher"
 
     - name: Notarize
       shell: bash
@@ -82,18 +82,18 @@ runs:
         cd ${{ env.INSTALL_DIR }}
 
         if [ -n '${{ inputs.apple-notarize-password }}' ]; then
-          ditto -c -k --sequesterRsrc --keepParent "ElyPrismLauncher.app" ../PineconeMC.zip
+          ditto -c -k --sequesterRsrc --keepParent "CentralisedLauncher.app" ../PineconeMC.zip
           xcrun notarytool submit ../PineconeMC.zip \
             --wait --progress \
             --apple-id '${{ inputs.apple-notarize-apple-id }}' \
             --team-id '${{ inputs.apple-notarize-team-id }}' \
             --password '${{ inputs.apple-notarize-password }}'
 
-          xcrun stapler staple "ElyPrismLauncher.app"
+          xcrun stapler staple "CentralisedLauncher.app"
         else
           echo ":warning: Skipping notarization as credentials are not present." >> $GITHUB_STEP_SUMMARY
         fi
-        ditto -c -k --sequesterRsrc --keepParent "ElyPrismLauncher.app" ../PineconeMC.zip
+        ditto -c -k --sequesterRsrc --keepParent "CentralisedLauncher.app" ../PineconeMC.zip
 
     - name: Create DMG
       shell: bash
@@ -103,7 +103,7 @@ runs:
         cd ${{ env.INSTALL_DIR }}
 
         mkdir -p src
-        cp -R "ElyPrismLauncher.app" src/
+        cp -R "CentralisedLauncher.app" src/
 
         ln -s /Applications src/
 
