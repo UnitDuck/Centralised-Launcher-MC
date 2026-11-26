@@ -63,5 +63,7 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           bundle=install/CentralisedLauncher.app/Contents
-          lipo -verify_arch x86_64 arm64 "$bundle/MacOS/CentralisedLauncher"
+          architectures=$(lipo -archs "$bundle/MacOS/CentralisedLauncher")
+          printf '%s\n' "$architectures" | grep -w x86_64
+          printf '%s\n' "$architectures" | grep -w arm64
           test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$bundle/Info.plist")" = io.github.unitduck.CentralisedLauncher
