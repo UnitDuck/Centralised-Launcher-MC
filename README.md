@@ -1,0 +1,2 @@
+# Centralised-Launcher-MC
+Launcher for Minecraft which ensures centralised control of mods and config of other users that have subscribed to your instance. Convenient for 2-week Minecraft phase servers where 1 admin ensures the whole friend group has everything needed and everything set up correctly.
