@@ -5,7 +5,8 @@ Work through these phases in order. The [launcher design](DESIGN.md) defines the
 ## 1. Set up the fork and test environment
 
 - [x] Import PineconeMC `11.1.2` at commit `ac99ad44ef98dd73dd9626c7b2b668dd8cbd5c` with upstream history, license, and notices. The local `upstream` remote is configured and the pinned `libnbtplusplus` submodule is initialized.
-- [ ] Build the baseline on Windows and the Mac architectures used by the group. Give the fork its own application identifier and credential-store service name.
+- [x] Assign `io.github.unitduck.CentralisedLauncher` as the application identifier and reserve that same name for the credential store.
+- [ ] Verify the baseline builds for Windows x64 and universal macOS (Intel and Apple silicon).
 - [ ] Set the default executable and data paths to the per-user locations in the design. Audit instance, runtime, cache, settings, and backup paths inherited from upstream so they resolve under the fork's own data directory.
 - [ ] Choose the latest stable Minecraft Java release that works with Fabric and the required mods. Pin the game, loader, and mod versions in a small test pack. Prepare a test server on the group's private network.
 - [ ] Verify that a username-only profile can join the test server. Check that optional Microsoft and Ely.by sign-in still work through their respective upstream account flows, and that the launcher explains an incompatible server login mode.

@@ -21,7 +21,7 @@ set(Launcher_MacAssetIconName "ElyPrismLauncher")
 
 set(Launcher_Name "${Launcher_CommonName}" PARENT_SCOPE)
 set(Launcher_DisplayName "${Launcher_DisplayName}" PARENT_SCOPE)
-set(Launcher_ENVName "PINECONEMC" PARENT_SCOPE)
+set(Launcher_ENVName "CENTRALISEDLAUNCHER" PARENT_SCOPE)
 set(Launcher_Domain "${Launcher_Domain}" PARENT_SCOPE)
 set(Launcher_Git "${Launcher_Git}" PARENT_SCOPE)
 

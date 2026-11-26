@@ -91,7 +91,7 @@ runs:
         find "$INSTALL_APPIMAGE_DIR" -name '*gamemode*' -exec rm {} +
 
         #disable OpenGL and Vulkan launcher features until https://github.com/VHSgunzo/sharun/issues/35
-        echo "PINECONEMC_DISABLE_GLVULKAN=1" >> "$INSTALL_APPIMAGE_DIR"/.env
+        echo "CENTRALISEDLAUNCHER_DISABLE_GLVULKAN=1" >> "$INSTALL_APPIMAGE_DIR"/.env
         #makes the launcher use portals for file picking
         echo "QT_QPA_PLATFORMTHEME=xdgdesktopportal" >> "$INSTALL_APPIMAGE_DIR"/.env
         ln -s io.github.unitduck.CentralisedLauncher.metainfo.xml "$INSTALL_APPIMAGE_DIR"/share/metainfo/io.github.unitduck.CentralisedLauncher.appdata.xml
